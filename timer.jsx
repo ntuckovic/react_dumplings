@@ -35,4 +35,4 @@ class Timer {
     }
 }
 
-export default Timer;
+module.exports = Timer;
