@@ -46,7 +46,7 @@ var webpackConfigTool = function (opts) {
                 exclude: /node_modules/,
                 query: {
                   cacheDirectory: true,
-                  presets: ['es2015', "stage-0", 'react']
+                  presets: ['es2015', 'react']
                 }
 
             },
