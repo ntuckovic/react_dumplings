@@ -41,13 +41,11 @@ var webpackConfigTool = function (opts) {
             loaders: [
             {
                 test: /\.jsx?/,
-                include: [
-                    opts.dev_path,
-                    'node_modules/react-dumplings/c3_chart.jsx'
-                ],
+                include: opts.dev_path,
                 loader: 'babel',
                 query: {
                   cacheDirectory: true,
+                  plugins: ['transform-object-rest-spread'],
                   presets: ['es2015', 'stage-0', 'react']
                 }
 
