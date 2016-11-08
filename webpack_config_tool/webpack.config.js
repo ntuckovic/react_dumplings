@@ -24,11 +24,13 @@ module.exports = config;
 */
 var webpackConfigTool = function (opts) {
     opts.build_path = opts.build_path || 'src/client/public';
-    opts.dev_path = opts.dev_path || 'src/client/dev/app';
+    opts.dev_paths = opts.dev_paths || ['src/client/dev/app'];
     opts.sass_path = opts.sass_path || 'src/client/dev/sass';
     opts.entry = opts.entry || 'index.jsx';
     opts.filename = opts.filename || 'bundle.js';
     opts.copy_array = opts.copy_array || [];
+
+    opts.dev_paths.push('react_dumplings');
 
     var config = {
         entry: opts.dev_path + '/' + opts.entry,
@@ -41,7 +43,7 @@ var webpackConfigTool = function (opts) {
             loaders: [
             {
                 test: /\.jsx?/,
-                include: opts.dev_path,
+                include: opts.dev_paths,
                 loader: 'babel',
                 query: {
                   presets: ['es2015', 'stage-0', 'react']
