@@ -9,10 +9,9 @@ class Chart extends Component {
 
     generateChart() {
         const {data, config, axis, zoom, subchart, padding, tooltip} = this.props;
-        const {
-            bindto,
-            ...restConfig
-        } = config;
+        const restConfig = Object.assign({}, config);
+        delete restConfig.bindto
+
         const c3Confg = {
             bindto: `#${bindto}`,
             ...restConfig,

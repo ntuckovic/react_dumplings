@@ -44,8 +44,6 @@ var webpackConfigTool = function (opts) {
                 include: opts.dev_path,
                 loader: 'babel',
                 query: {
-                  cacheDirectory: true,
-                  plugins: ['transform-object-rest-spread'],
                   presets: ['es2015', 'stage-0', 'react']
                 }
 
