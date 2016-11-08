@@ -1,3 +1,13 @@
+/*
+Example usage:
+==============
+import Timer from 'react-dumplings/timer.jsx';
+
+let reloadTimer = new Timer(() => {
+    console.log("This timer runs every 2 seconds");
+}, 2000);
+*/
+
 class Timer {
 
     constructor (fn, t) {
