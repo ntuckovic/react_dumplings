@@ -29,6 +29,7 @@ var webpackConfigTool = function (opts) {
     opts.entry = opts.entry || 'index.jsx';
     opts.filename = opts.filename || 'bundle.js';
     opts.copy_array = opts.copy_array || [];
+    opts.react_dumplings_path = opts.react_dumplings_path || path.resolve(__dirname, 'react_dumplings');
     opts.include_babel_paths = opts.include_babel_paths || [opts.dev_path, opts.react_dumplings_path];
 
     var config = {
