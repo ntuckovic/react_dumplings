@@ -76,4 +76,4 @@ Chart.defaultProps = {
     }
 };
 
-module.exports = Chart;
+export default Chart;
