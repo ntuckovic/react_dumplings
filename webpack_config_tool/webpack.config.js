@@ -43,11 +43,9 @@ var webpackConfigTool = function (opts) {
                 test: /\.jsx?/,
                 include: opts.dev_path,
                 loader: 'babel',
-                exclude: /node_modules/,
                 query: {
                   cacheDirectory: true,
-                  plugins: ['stage-0'],
-                  presets: ['es2015', 'react']
+                  presets: ['es2015', 'stage-0', 'react']
                 }
 
             },
