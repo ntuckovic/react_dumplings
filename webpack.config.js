@@ -33,7 +33,7 @@ var webpackConfigTool = function (opts) {
     opts.include_babel_paths = opts.include_babel_paths || [opts.dev_path, opts.react_dumplings_path];
 
     var config = {
-        entry: opts.dev_path + '/' + opts.entry,
+        entry: ['whatwg-fetch', opts.dev_path + '/' + opts.entry ],
         output: {
             path: opts.build_path,
             filename: opts.filename

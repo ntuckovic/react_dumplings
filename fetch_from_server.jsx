@@ -24,6 +24,16 @@ const fetchFromServer = {
         return response.json()
     },
 
+    mergeHeaders: (headers={}) => {
+        const defaultHeaders = {
+            'Content-Type': 'application/json'
+        };
+
+        headers = Object.assign(headers, defaultHeaders)
+
+        return headers;
+    },
+
     fetch: (url, onSuccess) => {
         return fetch(url, {
               credentials: 'same-origin'
@@ -33,7 +43,21 @@ const fetchFromServer = {
             .then(function(data) {
                 onSuccess(data);
             })
-    }
+    },
+
+    post: (url, data, onSuccess, headers={}) => {
+        return fetch(url, {
+              credentials: 'same-origin',
+              method: 'POST',
+              headers: fetchFromServer.mergeHeaders(headers),
+              body: JSON.stringify(data)
+            })
+            .then(fetchFromServer.checkStatus)
+            .then(fetchFromServer.parseJSON)
+            .then(function(data) {
+                onSuccess(data);
+            })
+    },
 };
 
 module.exports = fetchFromServer;
