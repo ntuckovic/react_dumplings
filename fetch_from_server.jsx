@@ -9,6 +9,11 @@ fetchFromServer.fetch("http://my-api-link.exmpla", (data) => {
 });
 */
 
+import NProgress from 'react-nprogress';
+
+
+
+
 const fetchFromServer = {
     checkStatus: (response) => {
         if (response.status >= 200 && response.status < 300) {
@@ -35,6 +40,8 @@ const fetchFromServer = {
     },
 
     fetch: (url, onSuccess) => {
+        NProgress.start();
+
         return fetch(url, {
               credentials: 'same-origin'
             })
@@ -42,10 +49,14 @@ const fetchFromServer = {
             .then(fetchFromServer.parseJSON)
             .then(function(data) {
                 onSuccess(data);
+
+                NProgress.done();
             })
     },
 
     post: (url, data, onSuccess, headers={}) => {
+        NProgress.start();
+
         return fetch(url, {
               credentials: 'same-origin',
               method: 'POST',
@@ -56,6 +67,7 @@ const fetchFromServer = {
             .then(fetchFromServer.parseJSON)
             .then(function(data) {
                 onSuccess(data);
+                NProgress.done();
             })
     },
 };
