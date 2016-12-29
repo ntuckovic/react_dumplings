@@ -54,12 +54,12 @@ const fetchFromServer = {
             })
     },
 
-    post: (url, data, onSuccess, headers={}) => {
+    post: (url, data, onSuccess, headers={}, method='POST') => {
         NProgress.start();
 
         return fetch(url, {
               credentials: 'same-origin',
-              method: 'POST',
+              method: method,
               headers: fetchFromServer.mergeHeaders(headers),
               body: JSON.stringify(data)
             })
@@ -69,6 +69,25 @@ const fetchFromServer = {
                 onSuccess(data);
                 NProgress.done();
             })
+    },
+
+    put: (url, data, onSuccess, headers={}) => {
+        return fetchFromServer.post(url, data, onSuccess, headers, 'PUT');
+    },
+
+    delete: (url, onSuccess, headers={}) => {
+        NProgress.start();
+
+        return fetch(url, {
+          credentials: 'same-origin',
+          method: 'DELETE',
+          headers: fetchFromServer.mergeHeaders(headers)
+        })
+        .then(fetchFromServer.checkStatus)
+        .then(function(data) {
+            onSuccess(data);
+            NProgress.done();
+        });
     },
 };
 
